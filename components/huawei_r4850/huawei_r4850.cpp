@@ -175,7 +175,7 @@ void HuaweiR4850Component::on_frame(uint32_t can_id, bool rtr, std::vector<uint8
         break;
 
       default:
-        // printf("Unknown parameter 0x%02X, 0x%04X\r\n",frame[1], value);
+        printf("Unknown parameter 0x%02X, 0x%04X\r\n",frame[1], value);
         break;
     }
   }

@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import button
-from esphome.const import CONF_ENTITY_CATEGORY, ENTITY_CATEGORY_CONFIG, CONF_ID
+from esphome.const import ENTITY_CATEGORY_CONFIG, CONF_ID
 
 from .. import HuaweiR4850Component, huawei_r4850_ns, CONF_HUAWEI_R4850_ID
 
@@ -15,13 +15,9 @@ CONFIG_SCHEMA = cv.All(
     cv.Schema(
         {
             cv.GenerateID(CONF_HUAWEI_R4850_ID): cv.use_id(HuaweiR4850Component),
-            cv.Optional(CONF_SET_OFFLINE_VALUES): button.button_schema(HuaweiR4850Button).extend(
-                {
-                    # cv.GenerateID(): cv.declare_id(HuaweiR4850Button),
-                    cv.Optional(
-                        CONF_ENTITY_CATEGORY, default=ENTITY_CATEGORY_CONFIG
-                    ): cv.entity_category,
-                }
+            cv.Optional(CONF_SET_OFFLINE_VALUES): button.button_schema(
+                HuaweiR4850Button,
+                entity_category=ENTITY_CATEGORY_CONFIG,
             ),
         }
     ).extend(cv.COMPONENT_SCHEMA)

@@ -5,6 +5,7 @@ esphome:
 external_components:
   - source: github://mb-software/esphome-huawei-r4850
     refresh: 0s
+    components: [huawei_r4850]
 
 esp32:
   board: esp32dev
@@ -47,6 +48,7 @@ canbus:
     use_extended_id: true
     can_id: 0
     bit_rate: 125kbps
+    rx_queue_len: 12
 
 huawei_r4850:
   canbus_id: can

@@ -4,10 +4,7 @@ from esphome.components import number
 from esphome.const import (
     UNIT_VOLT,
     CONF_ID,
-    CONF_ICON,
-    CONF_UNIT_OF_MEASUREMENT,
     CONF_MODE,
-    CONF_ENTITY_CATEGORY,
     ICON_FLASH,
     ICON_CURRENT_AC,
     CONF_MIN_VALUE,
@@ -32,40 +29,34 @@ CONFIG_SCHEMA = cv.All(
     cv.Schema(
         {
             cv.GenerateID(CONF_HUAWEI_R4850_ID): cv.use_id(HuaweiR4850Component),
-            cv.Optional(CONF_OUTPUT_VOLTAGE): number.number_schema(HuaweiR4850Number).extend(
+            cv.Optional(CONF_OUTPUT_VOLTAGE): number.number_schema(
+                HuaweiR4850Number,
+                icon=ICON_FLASH,
+                unit_of_measurement=UNIT_VOLT,
+                entity_category=ENTITY_CATEGORY_NONE,
+            ).extend(
                 {
-                    # cv.GenerateID(): cv.declare_id(HuaweiR4850Number),
                     cv.Optional(CONF_MIN_VALUE, default=42): cv.float_,
                     cv.Optional(CONF_MAX_VALUE, default=58): cv.float_,
                     cv.Optional(CONF_STEP, default=0.1): cv.float_,
-                    cv.Optional(CONF_ICON, default=ICON_FLASH): cv.icon,
-                    cv.Optional(
-                        CONF_UNIT_OF_MEASUREMENT, default=UNIT_VOLT
-                    ): cv.string_strict,
                     cv.Optional(CONF_MODE, default="BOX"): cv.enum(
                         number.NUMBER_MODES, upper=True
                     ),
-                    cv.Optional(
-                        CONF_ENTITY_CATEGORY, default=ENTITY_CATEGORY_NONE
-                    ): cv.entity_category,
                 }
             ),
-            cv.Optional(CONF_MAX_OUTPUT_CURRENT): number.number_schema(HuaweiR4850Number).extend(
+            cv.Optional(CONF_MAX_OUTPUT_CURRENT): number.number_schema(
+                HuaweiR4850Number,
+                icon=ICON_CURRENT_AC,
+                unit_of_measurement=UNIT_AMPERE,
+                entity_category=ENTITY_CATEGORY_NONE,
+            ).extend(
                 {
-                    # cv.GenerateID(): cv.declare_id(HuaweiR4850Number),
                     cv.Optional(CONF_MIN_VALUE, default=0): cv.float_,
                     cv.Optional(CONF_MAX_VALUE, default=60): cv.float_,
                     cv.Optional(CONF_STEP, default=0.1): cv.float_,
-                    cv.Optional(CONF_ICON, default=ICON_CURRENT_AC): cv.icon,
-                    cv.Optional(
-                        CONF_UNIT_OF_MEASUREMENT, default=UNIT_AMPERE
-                    ): cv.string_strict,
                     cv.Optional(CONF_MODE, default="BOX"): cv.enum(
                         number.NUMBER_MODES, upper=True
                     ),
-                    cv.Optional(
-                        CONF_ENTITY_CATEGORY, default=ENTITY_CATEGORY_NONE
-                    ): cv.entity_category,
                 }
             ),
         }
